@@ -23,35 +23,122 @@
         h3 {
             margin-bottom: 5px;
         }
+        h1 {
+            text-align: center;
+        }
         audio {
             width: 100%;
         }
     </style>
 </head>
 <body>
+    <div>
+        <h1>Enhancing Crowdsourced Audio for Text-to-Speech Models</h1>
+
+        <p>
+          Listen to the enhancement results of our audio processing pipeline applied to the Catalan split of CommonVoice (version 12). 
+          Samples are grouped by NISQA score, as we discovered that enhancement performance varies based on the initial audio quality. 
+          You can compare the original and enhanced versions of each sample.
+        </p>
+        
+        <p>Our enhancement pipeline consists of the following steps:</p>
+        <ol>
+          <li><strong>Format Conversion:</strong> Converting MP3 files to WAV format using FFmpeg</li>
+          <li><strong>Audio Enhancement:</strong> Processing through the VoiceFixer enhancement model</li>
+          <li><strong>Noise Reduction:</strong> 
+            <ul>
+              <li>Extracting the last 0.5 seconds of audio</li>
+              <li>Creating a noise profile from this segment</li>
+              <li>Applying Spectral Noise removal using Sox with the generated profile</li>
+            </ul>
+          </li>
+          <li><strong>Audio Trimming:</strong>
+            <ul>
+              <li>Removing silence segments longer than 0.1 seconds and below -55dB from both ends</li>
+              <li>Adding 0.1 seconds of silence padding at the beginning and end</li>
+            </ul>
+          </li>
+        </ol>
+    </div>
+
     <div class="container">
+        <h2> NISQA < 2 </h2>
         <div class="audio-players">
+            
             <div class="audio-section">
                 <h3>Original Audio</h3>
                 <audio controls>
-                    <source src="assets/original_common_voice_ca_30655825.wav_mos_2_0.wav" type="audio/wav">
+                    <source src="assets/original_common_voice_ca_27354764.wav_mos_2_1.wav" type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
             </div>
             <div class="audio-section">
                 <h3>Restored Audio</h3>
                 <audio controls>
-                    <source src="assets/restored_common_voice_ca_30655825.wav_mos_2_0.wav" type="audio/wav">
+                    <source src="assets/restored_common_voice_ca_27354764.wav_mos_2_1.wav" type="audio/wav">
                     Your browser does not support the audio element.
                 </audio>
             </div>
         </div>
         
         <div class="juxtapose">
-            <img src="assets/original_common_voice_ca_30655825.wav_mos_2_0.png" />
-            <img src="assets/restored_common_voice_ca_30655825.wav_mos_2_0.png" />
+            <img src="assets/original_common_voice_ca_27354764.wav_mos_2_1.png" />
+            <img src="assets/restored_common_voice_ca_27354764.wav_mos_2_1.png" />
         </div>
     </div>
+
+    <div class="container">
+        <h2> NISQA < 3 </h2>
+        <div class="audio-players">
+            
+            <div class="audio-section">
+                <h3>Original Audio</h3>
+                <audio controls>
+                    <source src="assets/original_common_voice_ca_21722868.wav_mos_3_1.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="audio-section">
+                <h3>Restored Audio</h3>
+                <audio controls>
+                    <source src="assets/restored_common_voice_ca_21722868.wav_mos_3_1.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        
+        <div class="juxtapose">
+            <img src="assets/original_common_voice_ca_21722868.wav_mos_3_1.png" />
+            <img src="assets/restored_common_voice_ca_21722868.wav_mos_3_1.png" />
+        </div>
+    </div>
+
+    <div class="container">
+        <h2> NISQA < 3 </h2>
+        <div class="audio-players">
+            
+            <div class="audio-section">
+                <h3>Original Audio</h3>
+                <audio controls>
+                    <source src="assets/original_common_voice_ca_30846569.wav_mos_3_0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <div class="audio-section">
+                <h3>Restored Audio</h3>
+                <audio controls>
+                    <source src="assets/restored_common_voice_ca_30846569.wav_mos_3_0.wav" type="audio/wav">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+        
+        <div class="juxtapose">
+            <img src="assets/original_common_voice_ca_30846569.wav_mos_3_0.png" />
+            <img src="assets/restored_common_voice_ca_30846569.wav_mos_3_0.png" />
+        </div>
+    </div>
+    
 
     <script src="https://cdn.knightlab.com/libs/juxtapose/latest/js/juxtapose.min.js"></script>
 </body>
